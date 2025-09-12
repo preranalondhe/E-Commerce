@@ -1,0 +1,51 @@
+<div class="product-container">
+  <div class="title">
+    <div class="title1">
+      <h2>Product Management</h2>
+    </div>
+    <div class="title2">
+      <input type="text" placeholder="search here..." />
+      <a routerLink="/addproduct" class="btn">Add Product</a>
+    </div>
+  </div>
+
+  <table class="product-table"  *ngIf="products.length > 0;else :noData ">
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Price (₹)</th>
+        <th>Quantity</th>
+        <th>Color</th>
+        <th>Brand</th>
+        <th>Sizes</th>
+        <th>Category</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let product of paginatedProducts">
+        <td>{{ product.name }}</td>
+        <td>{{ product.price }} ₹</td>
+        <td>{{ product.quantity }}</td>
+        <td>{{ product.colour }}</td>
+        <td>{{ product.brand }}</td>
+        <td>{{ product.sizes.join(', ') }}</td>
+    <td>{{ product.category?.name }}</td>
+        <td>
+          <button class="btn update" routerLink="/addproduct">Update</button>
+          <button class="btn delete">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #noData>
+    <p>No Products available.</p>
+  </ng-template>
+</div>
+
+<div class="pagination">
+  <button (click)="prevPage()" [disabled]="currentPage === 1">&#8592; Prev</button>
+  <span>Page {{ currentPage }} of {{ totalPages }}</span>
+  <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next &#8594;</button>
+</div>

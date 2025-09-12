@@ -1,0 +1,79 @@
+
+/* TOPBAR */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 2px;
+  right: 0;
+  height: 60px;
+  background-color: rgb(44, 62, 80);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.topbar-left .search-input {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  background-color: #ecf0f1;
+  font-size: 14px;
+  width: 210px;
+  transition: all 0.2s ease-in-out;
+}
+
+/*.topbar-left .search-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #1abc9c;
+} */
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.topbar-right i {
+  font-size: 18px;
+  color: #ecf0f1;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.topbar-right i:hover {
+  color: #1abc9c;
+}
+
+.language-selector {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #ecf0f1;
+  cursor: pointer;
+}
+
+.language-selector img {
+  width: 22px;
+  height: 15px;
+  border-radius: 2px;
+}
+
+.profile-pic {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #1abc9c;
+  cursor: pointer;
+}

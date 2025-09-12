@@ -1,0 +1,46 @@
+<div id="Delivery-Boy" class="section" style="display: block;">
+  <div class="delivery-boy-header">
+    <h2>Delivery Person</h2>
+    <button class="add-btn" routerLink="/register" routerLinkActive="active">
+      + Add Delivery Boy
+    </button>
+  </div>
+
+  <div class="delivery-boy-table-container">
+    <table class="delivery-boy-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Mobile No</th>
+          <th>Availability</th>
+          <th>Area</th>
+          <th>Deliveries</th>
+          <th>Assigned Tasks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of paginatedUsers">
+          <td>{{ user.id }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.mobile }}</td>
+          <td>{{ user.availablity }}</td>
+          <td>{{ user.area }}</td>
+          <td>{{ user.deliverycount }}</td>
+          <td>
+            <button class="btn" >View Tasks</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Pagination -->
+<div class="pagination">
+  <button (click)="prevPage()" [disabled]="currentPage === 1">&#8592; Prev</button>
+  <span id="pageIndicator">Page {{ currentPage }} of {{ totalPages }}</span>
+  <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next &#8594;</button>
+</div>

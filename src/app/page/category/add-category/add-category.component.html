@@ -1,0 +1,18 @@
+<div class="add-category-container">
+  <h2>Add New Category</h2>
+
+  <form id="addCategoryForm" [formGroup]="postCategory" (ngSubmit)="PostingCategory()">
+    <label for="categoryName">Category Name</label>
+    <input type="text" formControlName="name" id="categoryName" placeholder="Enter category name" required />
+
+    <label for="categoryDesc">Description</label>
+    <textarea id="categoryDesc" formControlName="description"  placeholder="Enter category description" required></textarea>
+
+    <label for="categoryStatus">Status</label>
+    <select id="categoryStatus" formControlName="status" required>
+      <option value="active">Active</option>
+      <option value="inactive">Inactive</option>
+    </select>
+
+<button type="submit" [disabled]="postCategory.invalid">Add Category</button>  </form>
+</div>

@@ -1,0 +1,39 @@
+<h2>Add Product</h2>
+<form id="productForm" [formGroup]="postProduct" (ngSubmit)="PostingProduct()">
+  <label>Product Name:</label>
+  <input type="text" formControlName="name" required />
+
+  <label>Description:</label>
+  <textarea formControlName="description" required></textarea>
+
+  <label>Price:</label>
+  <input type="number" formControlName="price" required />
+
+  <label>Discount Percent:</label>
+  <input type="number" formControlName="discountPercent" placeholder="Enter discount %" required />
+
+  <label>Color:</label>
+  <input type="text" formControlName="colour" required />
+
+  <label>Quantity:</label>
+  <input type="number" formControlName="quantity" required />
+
+  <label>Brand:</label>
+  <input type="text" formControlName="brand" required />
+
+  <label>Sizes:</label>
+  <input type="text" formControlName="sizes" placeholder="e.g. S,M,L" required />
+
+  <label>Category:</label>
+  <select id="productCategory" formControlName="categoryId" required>
+    <option value="">Select Category</option>
+    <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</option>
+  </select>
+
+  <label>Image:</label>
+  <input type="file" accept="image/*" (change)="onFileSelected($event)" />
+
+  <div style="text-align: center; margin-top: 10px;">
+    <button type="submit" class="btn add">Submit</button>
+  </div>
+</form>
