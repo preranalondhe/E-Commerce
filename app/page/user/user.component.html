@@ -1,0 +1,36 @@
+<div id="Users" class="section" style="display: block;">
+  <div class="user-header">
+    <h2>User List</h2>
+    <!-- <span class="user-count">Total Users: <strong>{{ users.length }}</strong></span> -->
+  </div>
+
+  <div class="user-table-container">
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Mobile No</th>
+          <th>Address</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of paginatedUsers">
+          <td>{{ user.id }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.mobile }}</td>
+          <td>{{ user.address }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Pagination -->
+<div class="pagination">
+  <button (click)="prevPage()" [disabled]="currentPage === 1">&#8592; Prev</button>
+  <span id="pageIndicator">Page {{ currentPage }} of {{ totalPages }}</span>
+  <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next &#8594;</button>
+</div>

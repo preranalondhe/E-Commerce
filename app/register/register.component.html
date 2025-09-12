@@ -1,0 +1,33 @@
+
+  <div class="modal-background">
+    <div class="modal-content">
+      <span class="close" onclick="window.location.href='frontpage.html'">&times;</span>
+      <h2>Register to ShopNexa</h2>
+      <form [formGroup]="register" (ngSubmit)="Registeration()">
+        <input type="text" name="username" formControlName="username" placeholder="Username" required />
+        <input type="email" name="email" formControlName="email" placeholder="Email" required />
+        <input type="password" formControlName="password" name="password" placeholder="Password" required minlength="6" />
+        <input type="text" name="mobile" formControlName="mobile" placeholder="Mobile" required pattern="[0-9]{10}" title="Enter a valid 10-digit mobile number" />
+        <input type="text" name="address" placeholder="Address"  formControlName="address" required />
+        
+        <select name="role" id="roleSelect" required formControlName="role" (change)="onRoleChange($event)">
+  <option value="">Select Role</option>
+  <option value="USER">User</option>
+  <option value="ADMIN">Admin</option>
+  <option value="DELIVERY">Delivery</option>
+</select>
+
+<input
+  type="text"
+  formControlName="area"
+  name="area"
+  id="areaInput"
+  placeholder="Area (only for delivery)"
+  *ngIf="selectedRole === 'DELIVERY'"
+/>
+  <button type="submit">Register</button>
+      </form>>
+      <p>Already have an account? <a href="/landingpage">Home</a></p>
+      <p id="responseMsg"></p>
+    </div>
+  </div>

@@ -1,0 +1,40 @@
+<div id="Stock" class="section" style="display: block">
+  <div class="stock-header">
+    <h2>Stock Management</h2>
+    <div class="stock-actions">
+      <input type="text"
+             placeholder="Search product.."
+            
+             class="stock-search" />
+      <button routerLink="/addstock" class="add-stock-btn">Add Stock</button>
+    </div>
+  </div>
+
+  <div class="stock-table-container">
+    <table class="stock-table">
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Available Stock</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let stock of paginatedStock">
+          <td>{{ stock.name }}</td>
+          <td>{{ stock.quantity }}</td>
+          <td [ngClass]="{ 'low-stock': stock.quantity < 100, 'in-stock': stock.quantity >= 100 }">
+            {{ stock.quantity < 100 ? 'Low Stock' : 'In Stock' }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Pagination Controls -->
+<div class="pagination">
+  <button (click)="prevPage()" [disabled]="currentPage === 1">&#8592; Prev</button>
+  <span>Page {{ currentPage }} of {{ totalPages }}</span>
+  <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next &#8594;</button>
+</div>

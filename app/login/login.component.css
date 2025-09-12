@@ -1,0 +1,152 @@
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body, html {
+  height: 100%;
+}
+
+/* Background image */
+.background {
+  /* Leading slash is important for Angular to resolve from src/assets */
+  background: url('/assets/images/bg5.jpg') no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Centered login box */
+.login-box {
+  background-color: white;
+  padding: 40px 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(49, 32, 32, 0.3);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.login-box h2 {
+  color: #0072ff;
+  margin-bottom: 20px;
+}
+
+.login-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  padding: 10px;
+}
+
+.login-box input {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.options a {
+  text-decoration: none;
+  color: #0072ff;
+}
+
+button[type="submit"] {
+  padding: 12px;
+  background-color: #0072ff;
+  color: #fff;
+  border: none;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #005bb5;
+}
+
+/* Social login buttons */
+.google,
+.facebook {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* space between icon and text */
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  color: black;
+  transition: 0.3s;
+  background-color: #f5f5f5;
+}
+
+.google:hover {
+  background-color: #e8e8e8;
+}
+
+.facebook:hover {
+  background-color: #e1e1e1;
+}
+
+.google .icon,
+.facebook .icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* Register link */
+.register {
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+.register a {
+  color: #0072ff;
+  text-decoration: none;
+}
+
+.register a:hover {
+  text-decoration: underline;
+}
+.form-group {
+  display: flex;
+  flex-direction: column; /* label above input */
+  align-items: flex-start;
+  text-align: left;
+  width: 100%;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}

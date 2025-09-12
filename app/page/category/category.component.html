@@ -1,0 +1,45 @@
+<div class="category-container">
+  <div class="title">
+    <div class="title1">
+      <h2>Category Management</h2>
+    </div>
+    <div class="title2">
+      <input type="text" placeholder="search here..." />
+      <a routerLink="/addcategory" class="btn">Add Category</a>
+    </div>
+  </div>
+
+  <table class="category-table" *ngIf="categories.length > 0; else noData">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Category Name</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of categories">
+        <td>{{ category.id }}</td>
+        <td>{{ category.name }}</td>
+        <td>{{ category.description ? category.description : 'N/A' }}</td>
+        <td>
+          <span class="status" [ngClass]="(category.status || 'inactive').toLowerCase()">
+            {{ category.status ? category.status : 'Inactive' }}
+          </span>
+        </td>
+        <td>
+  <button class="btn edit">Edit</button>
+  <button class="btn deactivate" *ngIf="(category.status || '').toLowerCase() === 'active'">Deactivate</button>
+  <button class="btn activate" *ngIf="(category.status || '').toLowerCase() !== 'active'">Activate</button>
+</td>
+
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #noData>
+    <p>No categories available.</p>
+  </ng-template>
+</div>

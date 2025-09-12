@@ -1,0 +1,58 @@
+<div class="orders-section">
+  <!-- Filter Controls -->
+  <div class="filter-controls">
+    <label for="filter">Filter by Date:</label>
+    <select id="filter">
+      <option value="today">Today</option>
+      <option value="7days">Last 7 Days</option>
+      <option value="30days">Last 30 Days</option>
+      <option value="all" selected>All</option>
+    </select>
+
+    <label for="areaFilter">Filter by Area:</label>
+    <select id="areaFilter">
+      <option value="all">All Areas</option>
+    </select>
+  </div>
+
+  <!-- Order Table -->
+  <div class="order-table-container">
+    <h3>Order List</h3>
+    <table class="product-table">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Customer Name</th>
+          <th>Area</th>
+          <th>Payment Status</th>
+          <th>Delivery Status</th>
+          <th>Delivery Date</th>
+          <th>Bill</th>
+        </tr>
+      </thead>
+      <tbody>
+  <tr *ngFor="let order of paginatedOrders">
+    <td>{{ order.id }}</td>
+    <td>{{ order.customer?.name }}</td>
+    <td>{{ order.customer?.address }}</td>
+    <td>{{ order.paymentStatus }}</td>
+    <td>{{ order.orderstatus }}</td>
+    <td>{{ order.deliveredAt || 'N/A' }}</td>
+    <td>
+      <button (click)="showReceipt(order.id)">View</button>
+      <button (click)="viewMore(order.id)">View More</button>
+    </td>
+  </tr>
+</tbody>
+
+        
+    </table>
+  </div>
+</div>
+
+<!-- Pagination -->
+<div class="pagination">
+  <button (click)="prevPage()" [disabled]="currentPage === 1">&#8592; Prev</button>
+  <span id="pageIndicator">Page {{ currentPage }} of {{ totalPages }}</span>
+  <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next &#8594;</button>
+</div>
