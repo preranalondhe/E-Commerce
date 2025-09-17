@@ -1,0 +1,32 @@
+<!--sidebar.component.html -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+<div class="sidebar">
+    <br>
+    <br>
+    <a routerLink="/dashboard" routerLinkActive="active">
+      <i class="fas fa-chart-line"></i> Dashboard
+    </a>
+    <a routerLink="/category" routerLinkActive="active">
+        <i class="fa-solid fa-layer-group"></i> Category
+    </a>
+    <a routerLink="/product" routerLinkActive="active">
+      <i class="fas fa-box-open"></i> Products
+    </a>
+    <a routerLink="/order" routerLinkActive="active">
+      <i class="fas fa-shopping-cart"></i> Orders
+    </a>
+    <a routerLink="/user" routerLinkActive="active">
+      <i class="fas fa-users"></i> Users
+    </a>
+     
+    <a routerLink="/stock" routerLinkActive="active">
+      <i class="fas fa-warehouse"></i> Stock
+    </a>
+    <a routerLink="/delivery" routerLinkActive="active">
+      <i class="fa-solid fa-motorcycle"></i> Delivery-Person
+    </a>
+    <a  (click)="logout()">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </a>
+  </div>

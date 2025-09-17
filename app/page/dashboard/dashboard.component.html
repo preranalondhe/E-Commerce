@@ -1,0 +1,39 @@
+<div class="main">
+  <!-- Cards Section -->
+    <h2 class="header">Welcome Admin!</h2>
+
+  <div class="cards">
+    <div class="card">
+      <h3>Total Orders</h3>
+      <p>{{ totalOrders }}</p>
+    </div>
+    <div class="card">
+      <h3>Total Products</h3>
+      <p>{{ totalProducts }}</p>
+    </div>
+    <div class="card">
+      <h3>Total Users</h3>
+      <p>{{ totalUsers }}</p>
+    </div>
+  </div>
+
+  <!-- Bottom Section -->
+  <div class="bottom-section">
+    <div class="chart-container">
+      <h3>Monthly Sales</h3>
+      <canvas id="salesChart"></canvas>
+    </div>
+
+    <div class="orders-container">
+      <h3>Recent Orders</h3>
+      <table>
+        <tr>
+          <th>ID</th><th>Customer</th><th>Product</th><th>Quantity</th><th>Status</th>
+        </tr>
+        <tr>
+          <td>1</td><td>Shubham Londhe</td><td>Jacket</td><td>1</td><td>Ordered</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

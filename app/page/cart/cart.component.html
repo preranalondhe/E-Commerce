@@ -1,0 +1,75 @@
+<head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<header>
+    <h1><i class="fa-solid fa-cart-shopping"></i> Your Shopping Cart</h1>
+  <a routerLink="/" class="back-link"><i class="fa-solid fa-house"></i> Home</a>
+</header>
+
+<!-- Checked products count -->
+<div id="checkedCount" class="checked-count">
+  {{ selectedProducts.length > 0 ? selectedProducts.length + ' products selected' : 'No products selected' }}
+</div>
+
+<!-- Cart items list -->
+<div id="cartList" class="cart-list">
+  <div *ngIf="!cart || cart.items.length === 0" class="empty">
+    Your cart is empty
+  </div>
+
+  <div class="cart-item" *ngFor="let item of cart?.items">
+    
+    <!-- Checkbox -->
+    <input type="checkbox"
+           [checked]="selectedProducts.includes(item)"
+           (change)="toggleSelection(item)" />
+
+    <!-- Product Image -->
+<img [src]="'http://localhost:4040' + item.product.imagePaths" 
+       alt="{{ item.product.name }}" class="product-img">
+    <!-- Product Info -->
+    <div class="item-info">
+      <h3>{{ item.product.name }}</h3>
+      <p>
+        ₹{{ item.product.price - (item.product.price * item.product.discountPercent / 100) }}
+        <span class="old-price">₹{{ item.product.price }}</span>
+        <span class="discount">({{ item.product.discountPercent }}% OFF)</span>
+      </p>
+      <p>Qty: 
+        <input type="number" [(ngModel)]="item.quantity" min="1" />
+      </p>
+    </div>
+
+    <!-- Delete Button -->
+    <button class="remove-btn" (click)="removeItem(item.id)">
+<i class="fas fa-trash"></i>
+    </button>
+  </div>
+</div>
+
+
+<!-- Selected products -->
+<div id="selectedProducts" class="selected-products" *ngIf="selectedProducts.length > 0">
+  <strong>🛒 Selected Products:</strong>
+  <ul id="selectedNames">
+    <li *ngFor="let item of selectedProducts">{{ item.product.name }}</li>
+  </ul>
+</div>
+
+<!-- Place Order button -->
+<button id="placeOrderBtn" class="place-order-btn" (click)="placeOrder()">
+  Place Order
+</button>
+
+<!-- Order Modal -->
+<div id="orderModal" class="modal">
+  <div class="modal-content">
+    <button class="close-btn" (click)="closeModal()">X</button>
+    <h2>Confirm Your Order</h2>
+    <form id="orderForm">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <textarea id="address" placeholder="Address" required></textarea>
+      <input type="text" id="mobile" placeholder="Mobile Number" required />
+      <button type="submit">Submit Order</button>
+    </form>
+  </div>
+</div>

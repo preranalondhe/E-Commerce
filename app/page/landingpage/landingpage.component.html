@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shopping mart</title>
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+
+  <link rel="stylesheet" href="landingpage.component.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+  <div class="navbar-container">
+    <div class="logo">ShopNexa</div>
+    <div class="logo-section">
+      
+      <div class="nav-links">
+      <ul class="main-menu">
+        <li class="dropdown">
+          <a href="#">Men</a>
+          <ul class="dropdown-menu">
+            <li><a href="men.html">Shirts</a></li>
+            <li><a href="men-tshirts.html">T-Shirts</a></li>
+            <li><a href="men-jeans.html">Jeans</a></li>
+            <li><a href="men-jackets.html">Jackets</a></li>
+            <li><a href="men-shoes.html">Shoes</a></li>
+            <li><a href="men-watches.html">Watches</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Women</a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Dresses</a></li>
+            <li><a href="#">Tops</a></li>
+            <li><a href="#">Sarees</a></li>
+            <li><a href="#">Watches</a></li>
+            <li><a href="#">Jeans</a></li>
+            <li><a href="#">Heels</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Kids</a>
+          <ul class="dropdown-menu">
+            <li><a href="#">T-Shirts</a></li>
+            <li><a href="#">Dresses</a></li>
+            <li><a href="#">Jeans</a></li>
+            <li><a href="#">Shoes</a></li>
+            <li><a href="#">Hats</a></li>
+            <li><a href="#">Backpacks</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Beauty</a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Lipstick</a></li>
+            <li><a href="#">Foundation</a></li>
+            <li><a href="#">Eyeshadow</a></li>
+            <li><a href="#">Perfume</a></li>
+            <li><a href="#">Skincare</a></li>
+            <li><a href="#">Nail Polish</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    </div>
+
+
+    <!-- 🔍 Search Bar -->
+    <div class="search-bar">
+      <input type="text" placeholder="Search for products..." />
+      <button><i class="fas fa-search"></i></button>
+    </div>
+
+    <nav>
+  <ul>
+    <li>
+      <a href="#">
+        <div class="nav-icon">
+          <i class="fa-solid fa-heart"></i>
+          <span>Wishlist</span>
+        </div>
+      </a>
+    </li>
+    <!-- Login/Profile -->
+<li *ngIf="!isLoggedIn">
+  <a routerLink="/login" routerLinkActive="active">
+    <div class="nav-icon">
+      <i class="fas fa-user"></i>
+      <span>Login</span>
+    </div>
+  </a>
+</li>
+
+<li *ngIf="isLoggedIn" class="profile-dropdown">
+  <div class="nav-icon">
+    <i class="fas fa-user-circle"></i>
+    <span>{{ user?.sub }}</span> <!-- 👈 shows username/email -->
+    <i class="fas fa-caret-down"></i>
+  </div>
+  <div class="dropdown-content">
+    <p><strong>{{ user?.sub }}</strong></p>
+    <p>Role: {{ user?.role }}</p>
+    <button (click)="logout()">Logout</button>
+  </div>
+</li>
+
+    <li>
+      <a routerLink="/cart" routerLinkActive="active">
+        <div class="nav-icon">
+          <span id="cartCount">{{cartCount}}</span>
+          <i class="fas fa-shopping-cart"></i>
+          <span>Cart</span>
+        </div>
+      </a>
+    </li>
+    <li>
+      <a href="Orders.html">
+      <div class="nav-icon">
+        <i class="fa-duotone fa-solid fa-bag-shopping"></i>
+        <span>Orders</span>
+      </div>
+      </a>
+    </li>
+  </ul>
+</nav>
+  </div>
+</header>
+
+
+ <section class="hero">
+  <div class="hero-content">
+    <h1>Style that Speaks</h1>
+    <p>Trendy. Affordable. Just for You.</p>
+    <a href="#" class="btn">Shop Now</a>
+  </div>
+</section>
+
+
+
+  <!-- Categories Section -->
+ <div class="categories">
+  <a href="javascript:void(0)" class="category-card" onclick="toggleCategory('menSubCategories')">
+  <img src="/assets/images/men.jfif" alt="Men">
+  <h3>Men</h3>
+</a>
+
+<a href="javascript:void(0)" class="category-card" onclick="toggleCategory('womenSubCategories')">
+  <img src="/assets/images/women.jfif" alt="Women">
+  <h3>Women</h3>
+</a>
+
+<a href="javascript:void(0)" class="category-card" onclick="toggleCategory('kidsSubCategories')">
+  <img src="/assets/images/kids.jfif" alt="Kids">
+  <h3>Kids</h3>
+</a>
+
+<a href="javascript:void(0)" class="category-card" onclick="toggleCategory('beautySubCategories')">
+  <img src="/assets/images/beauty.jpg" alt="Beauty">
+  <h3>Beauty</h3>
+</a>
+
+</div>
+<!-- Sub-Categories for Men -->
+<div id="menSubCategories" class="sub-categories hidden">
+  <h2>Men's Categories</h2>
+  <div class="subcategory-cards">
+    <a href="men.html" class="subcategory-card">
+      <img src="menshirt.jfif" alt="Shirts">
+      <h4>Shirts</h4>
+    </a>
+    <a href="men-tshirts.html" class="subcategory-card">
+      <img src="tshirt.jfif" alt="T-Shirts">
+      <h4>T-Shirts</h4>
+    </a>
+    <a href="men-jeans.html" class="subcategory-card">
+      <img src="menjeans.jfif" alt="Jeans">
+      <h4>Jeans</h4>
+    </a>
+    <a href="men-jackets.html" class="subcategory-card">
+      <img src="mensblazer.jfif" alt="Jackets">
+      <h4>Jackets</h4>
+    </a>
+    <a href="men-shoes.html" class="subcategory-card">
+      <img src="shoes.jpg" alt="Shoes">
+      <h4>Shoes</h4>
+    </a>
+    <a href="men-watches.html" class="subcategory-card">
+      <img src="watch.jfif" alt="Watches">
+      <h4>Watches</h4>
+    </a>
+  </div>
+</div>
+
+<div id="womenSubCategories" class="sub-categories hidden">
+  <h2>Women's Categories</h2>
+  <div class="subcategory-cards">
+    <div class="subcategory-card">
+      <img src="dress.jpg" alt="Dresses">
+      <h4>Dresses</h4>
+    </div>
+    <div class="subcategory-card">
+      <img src="tops.jpg" alt="Tops">
+      <h4>Tops</h4>
+    </div>
+    <div class="subcategory-card">
+      <img src="jeans.jpg" alt="Jeans">
+      <h4>Jeans</h4>
+    </div>
+    <div class="subcategory-card">
+      <img src="heels.jpg" alt="Heels">
+      <h4>Heels</h4>
+    </div>
+  </div>
+</div>
+<div id="kidsSubCategories" class="sub-categories hidden">
+  <h2>Kids' Categories</h2>
+  <div class="subcategory-cards">
+    <a href="kids-tshirts.html" class="subcategory-card">
+      <img src="kidswear1.jpg" alt="T-Shirts">
+      <h4>T-Shirts</h4>
+    </a>
+    <a href="kids-dresses.html" class="subcategory-card">
+      <img src="kidsdress.jpg" alt="Dresses">
+      <h4>Dresses</h4>
+    </a>
+    <a href="kids-jeans.html" class="subcategory-card">
+      <img src="kidsjeans.jpg" alt="Jeans">
+      <h4>Jeans</h4>
+    </a>
+    <a href="kids-shoes.html" class="subcategory-card">
+      <img src="kidsshoes.jpg" alt="Shoes">
+      <h4>Shoes</h4>
+    </a>
+    <a href="kids-hats.html" class="subcategory-card">
+      <img src="kidshats.jpg" alt="Hats">
+      <h4>Hats</h4>
+    </a>
+    <a href="kids-backpacks.html" class="subcategory-card">
+      <img src="kidsbags.jpg" alt="Backpacks">
+      <h4>Backpacks</h4>
+    </a>
+  </div>
+</div>
+
+<div id="beautySubCategories" class="sub-categories hidden">
+  <h2>Beauty Categories</h2>
+  <div class="subcategory-cards">
+    <a href="lipstick.html" class="subcategory-card">
+      <img src="lipstick.jpg" alt="Lipstick">
+      <h4>Lipstick</h4>
+    </a>
+    <a href="foundation.html" class="subcategory-card">
+      <img src="foundation.jpg" alt="Foundation">
+      <h4>Foundation</h4>
+    </a>
+    <a href="eyeshadow.html" class="subcategory-card">
+      <img src="eyeshadow.jpg" alt="Eyeshadow">
+      <h4>Eyeshadow</h4>
+    </a>
+    <a href="perfume.html" class="subcategory-card">
+      <img src="perfume.jpg" alt="Perfume">
+      <h4>Perfume</h4>
+    </a>
+    <a href="skincare.html" class="subcategory-card">
+      <img src="skincare.jpg" alt="Skincare">
+      <h4>Skincare</h4>
+    </a>
+    <a href="nailpolish.html" class="subcategory-card">
+      <img src="nailpolish.jpg" alt="Nail Polish">
+      <h4>Nail Polish</h4>
+    </a>
+  </div>
+</div>
+
+
+  <!-- Product Section -->
+<section id="productSection" class="product-section">
+    <h2 id="categoryTitle">Products</h2>
+    <div id="productList" class="product-list">
+        <!-- Products will be injected here -->
+    </div>
+</section>
+
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 ShopNexa. Made with 💖</p>
+  </footer>
+<!-- Login Modal -->
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h2>Login to ShopNexa</h2>
+    <form>
+      <input type="text" placeholder="Email or Username" required />
+      <input type="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+
+      <!-- 👇 Add this line for reset password -->
+      <p style="margin-top: 10px;">
+        <a href="forgetPassword.html">Forgot Password?</a>
+      </p>
+    </form>
+
+    <p>Don't have an account? <a href="register.html">Register</a></p>
+  </div>
+</div>
+<script src="frontpage.js"></script>
+
+</body>
+</html>

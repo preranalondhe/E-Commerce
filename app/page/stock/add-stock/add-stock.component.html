@@ -1,0 +1,20 @@
+<div class="add-stock-container">
+  <div class="add-stock-form">
+    <h3>Add Stock</h3>
+    <form id="addStockForm" [formGroup]="postStock" (ngSubmit)="PostingStock()">
+      <label for="stockProductName">Product Name:</label>
+<select formControlName="productId" id="stockProductName" required>
+  <option value="" disabled selected>Select a product</option>
+  <option *ngFor="let product of products" [value]="product.id">
+    {{ product.name }}
+  </option>
+</select>
+
+
+      <label for="stockQuantity">Quantity to Add:</label>
+      <input type="number" formControlName="quantity" id="stockQuantity" required />
+
+      <button type="submit" class="btn">Add Stock</button>
+    </form>
+  </div>
+</div>
