@@ -18,17 +18,19 @@ export class AddProductComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.postProduct = this.fb.group({
-      name: ['', Validators.required],
-      description: ['', Validators.required],
-      price: ['', Validators.required],
-      brand: ['', Validators.required],
-      discountPercent: ['', Validators.required],
-      colour: ['', Validators.required],
-      quantity: ['', Validators.required],
-      sizes: ['', Validators.required],
-      categoryId: ['', Validators.required],
-      images: ['', Validators.required]
-    });
+  name: ['', Validators.required],
+  description: ['', Validators.required],
+  price: ['', Validators.required],
+  brand: ['', Validators.required],
+  discountPercent: ['', Validators.required],
+  colour: ['', Validators.required],
+  quantity: ['', Validators.required],
+  sizes: ['', Validators.required],
+  categoryId: ['', Validators.required],
+  base64Images: ['', Validators.required] // renamed
+});
+
+   
   }
 
   ngOnInit() {
@@ -48,39 +50,30 @@ export class AddProductComponent implements OnInit {
 onFileSelected(event: any) {
   const file = event.target.files[0];
   if (file) {
-    this.postProduct.patchValue({ images: file });
+    const reader = new FileReader();
+    reader.onload = () => {
+      const base64 = (reader.result as string).split(',')[1]; // strip "data:image/png;base64,"
+this.postProduct.patchValue({ base64Images: [base64] }); // ✅ correct key
+    };
+    reader.readAsDataURL(file);
   }
 }
-
-
- PostingProduct() {
+PostingProduct() {
   if (this.postProduct.valid) {
-    const formData = new FormData();
-
-    // ✅ Create product JSON
     const product = {
-      name: this.postProduct.get('name').value,
-      description: this.postProduct.get('description').value,
-      price: this.postProduct.get('price').value,
-      brand: this.postProduct.get('brand').value,
-      discountPercent: this.postProduct.get('discountPercent').value,
-      colour: this.postProduct.get('colour').value,
-      quantity: this.postProduct.get('quantity').value,
-      sizes: this.postProduct.get('sizes').value.split(',').map((s: string) => s.trim()),
-      categoryId: this.postProduct.get('categoryId').value
+      name: this.postProduct.get('name')?.value,
+      description: this.postProduct.get('description')?.value,
+      price: this.postProduct.get('price')?.value,
+      brand: this.postProduct.get('brand')?.value,
+      discountPercent: this.postProduct.get('discountPercent')?.value,
+      colour: this.postProduct.get('colour')?.value,
+      quantity: this.postProduct.get('quantity')?.value,
+      sizes: this.postProduct.get('sizes')?.value.split(',').map((s: string) => s.trim()),
+      categoryId: this.postProduct.get('categoryId')?.value,
+base64Images: this.postProduct.get('base64Images')?.value // ✅ correct key
     };
 
-    // ✅ Append product JSON as Blob
-    formData.append('product', new Blob([JSON.stringify(product)], { type: 'application/json' }));
-
-    // ✅ Append file(s)
-    const file = this.postProduct.get('images').value;
-    if (file) {
-      formData.append('images', file); // if multiple, loop and append
-    }
-
-    // ✅ Send FormData
-    this.productService.postProduct(formData).subscribe({
+    this.productService.postProduct(product).subscribe({
       next: (response) => {
         console.log('Product added successfully:', response);
         alert('Product Added Successfully');
@@ -93,6 +86,5 @@ onFileSelected(event: any) {
     });
   }
 }
-
 
 }

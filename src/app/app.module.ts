@@ -25,6 +25,7 @@ import { LoginComponent } from './login/login.component';
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
 import { CartComponent } from './page/cart/cart.component';
 import { AuthInterceptor } from './service/AuthInterceptor';
+import { CategoryProductsComponent } from './category-products/category-products.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { AuthInterceptor } from './service/AuthInterceptor';
     RegisterComponent,
     LoginComponent,
     ForgetpasswordComponent,
-    CartComponent
+    CartComponent,
+    CategoryProductsComponent
   ],
   imports: [
     BrowserModule,

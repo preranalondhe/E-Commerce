@@ -17,6 +17,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
 import { CartComponent } from './page/cart/cart.component';
+import { CategoryProductsComponent } from './category-products/category-products.component';
 
 
 const routes: Routes = [
@@ -30,7 +31,9 @@ const routes: Routes = [
       {path :'register',component:RegisterComponent},
       {path:'login',component:LoginComponent},
       {path:'forgetpassword',component:ForgetpasswordComponent},
-      {path: 'cart', component:CartComponent}
+      {path: 'cart', component:CartComponent},
+  { path: 'category/:id', component: CategoryProductsComponent },
+
     ]
   },
   {

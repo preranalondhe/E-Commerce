@@ -1,0 +1,109 @@
+<head>
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<div class="category-products-container">
+
+  <!-- Hero Banner -->
+  <div class="hero-banner">
+    <div class="overlay"></div>
+    <h2>{{ categoryName || "Men's Fashion" }}</h2>
+    <a routerLink="/landingpage" class="home-icon">
+      <i class="fas fa-home"></i>
+    </a>
+  </div>
+
+  <!-- Loading & Error -->
+  <div *ngIf="loading" class="loading">Loading products...</div>
+  <div *ngIf="!loading && errorMessage" class="error-message">{{ errorMessage }}</div>
+
+  <!-- Category Page: Sidebar + Products -->
+  <div class="category-page">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h3>Filter Products</h3>
+
+      <!-- Color dropdown -->
+      <label>Color</label>
+      <select [(ngModel)]="filters.color">
+        <option value="">All</option>
+        <option *ngFor="let color of colors" [value]="color">{{ color }}</option>
+      </select>
+
+      <!-- Brand -->
+      <label>Brand</label>
+      <select [(ngModel)]="filters.brand">
+        <option value="">All</option>
+        <option *ngFor="let brand of brands" [value]="brand">{{ brand }}</option>
+      </select>
+
+      <!-- Discount input (min %) -->
+      <label>Discount (%)</label>
+<select [(ngModel)]="filters.discountPercent">
+  <option value="">All</option>
+  <option *ngFor="let range of discountRanges" [value]="range.value">
+    {{ range.label }}
+  </option>
+</select>
+
+
+      <!-- Price -->
+      <label>Min Price</label>
+      <input type="number" [(ngModel)]="filters.minPrice" placeholder="0" />
+
+      <label>Max Price</label>
+      <input type="number" [(ngModel)]="filters.maxPrice" placeholder="1000" />
+
+      <!-- Sort -->
+      <label>Sort by Price</label>
+      <select [(ngModel)]="filters.sort">
+        <option value="">Default</option>
+        <option value="asc">Low to High</option>
+        <option value="desc">High to Low</option>
+      </select>
+
+      <button (click)="applyFilters()">Apply</button>
+      <button (click)="clearFilters()">Clear</button>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="product-grid">
+  <div class="product-card" *ngFor="let product of products">
+<div class="product-image">
+  <img [src]="'data:image/jpeg;base64,' + product.base64Images[0]" alt="{{ product.name }}" />
+</div>
+
+
+    <!-- 🔹 Brand name under image -->
+    <p class="brand" *ngIf="product.brand">{{ product.brand }}</p>
+
+    <!-- Product title -->
+    <h3>{{ product.name }}</h3>
+
+    <p class="desc">{{ product.description || 'Product description here' }}</p>
+
+    <!-- 🔹 Price + Offer -->
+    <p class="price">
+  <span class="discounted">₹{{ product.finalPrice }}</span>
+  <span class="original" *ngIf="product.offer > 0">₹{{ product.price }}</span>
+  <span class="offer" *ngIf="product.offer > 0">
+    ({{ product.offer }}% OFF)
+  </span>
+</p>
+
+<!-- After-offer price -->
+<p class="final-price" *ngIf="product.offer > 0">
+  After Offer: ₹{{ product.finalPrice }}
+</p>
+
+
+    <!-- Buttons -->
+    <div class="product-buttons">
+      <button (click)="addToCart(product)" class="add-cart">Add to Cart</button>
+      <button class="buy-now">Buy Now</button>
+      <button (click)="loadReviews(product)" class="see-reviews">See Reviews</button>
+    </div>
+  </div>
+</div>

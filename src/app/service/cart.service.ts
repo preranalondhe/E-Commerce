@@ -10,7 +10,7 @@ export interface Product {
   brand: string;
   imagePaths: string;
   discountPercent: number;   // ✅ added
-  colour?: string;           // optional, since backend has it
+  colour?: string;           // optional
 }
 
 export interface CartItem {
@@ -35,12 +35,21 @@ export class CartService {
   constructor(private httpClient: HttpClient) {}
 
   getMyCart(): Observable<Cart> {
-    const token = localStorage.getItem('jwtToken'); // or sessionStorage
-
+    const token = localStorage.getItem('jwtToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
+    return this.httpClient.get<Cart>(`${this.url}/cart/mycart`, { headers });
+  }
 
-    return this.httpClient.get<Cart>("http://localhost:4040/cart/mycart", { headers });
+  // ✅ Fix: backend expects a list, so wrap request in an array
+  addToCart(request: { productId: number; quantity: number; size?: string }): Observable<CartItem[]> {
+    const token = localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+
+    return this.httpClient.post<CartItem[]>(`${this.url}/cart/add`, [request], { headers });
   }
 }
