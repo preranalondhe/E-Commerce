@@ -1,0 +1,91 @@
+/* Centers form vertically and horizontally */
+.update-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  background-color: #f7f9fc;
+}
+
+.update-container {
+  position: relative;
+  width: 420px;
+  background: #fff;
+  padding: 30px 25px 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease;
+}
+
+.update-container:hover {
+  transform: translateY(-3px);
+}
+
+.update-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #2e86de;
+}
+
+/* 🔹 Inputs */
+.update-container label {
+  display: block;
+  margin-top: 12px;
+  font-weight: 600;
+  color: #333;
+}
+
+.update-container input,
+.update-container textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-top: 5px;
+  transition: border-color 0.2s ease;
+}
+
+.update-container input:focus,
+.update-container textarea:focus {
+  border-color: #2e86de;
+  outline: none;
+}
+
+/* 🔹 Button */
+.update-container button[type="submit"] {
+  margin-top: 25px;
+  width: 100%;
+  padding: 10px;
+  background-color: #2e86de;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.update-container button[type="submit"]:hover {
+  background-color: #2162a6;
+}
+
+/* 🔹 Close button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  font-weight: bold;
+  color: #666;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+  color: #2e86de;
+}

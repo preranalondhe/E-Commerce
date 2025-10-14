@@ -21,6 +21,7 @@ import { AddStockComponent } from './page/stock/add-stock/add-stock.component';
 import { DeliveryPersonComponent } from './page/delivery-person/delivery-person.component';
 import { UserComponent } from './page/user/user.component';
 import { OrderComponent } from './page/order/order.component';
+import { UpdateProductComponent } from './page/product/updateproduct/updateproduct.component';
 
 const routes: Routes = [
 
@@ -50,6 +51,7 @@ const routes: Routes = [
       { path: 'category', component: CategoryComponent }, // admin category list
       { path: 'addcategory', component: AddCategoryComponent },
       { path: 'product', component: ProductComponent },
+      {path: 'updateproduct', component:UpdateProductComponent},
       { path: 'addproduct', component: AddProductComponent },
       { path: 'stock', component: StockComponent },
       { path: 'addstock', component: AddStockComponent },

@@ -47,5 +47,16 @@ export class ProductService {
   if (discountPercent) params = params.set('discountPercent', discountPercent);
   return this.httpClient.get<any[]>(`${this.url}/filter`, { params });
 }
+getProductById(id: number): Observable<any> {
+  return this.httpClient.get(`${this.url}/product/${id}`);
+}
+
+updateProduct(id: number, product: any, images: File[]): Observable<any> {
+  const formData = new FormData();
+  formData.append('product', new Blob([JSON.stringify(product)], { type: 'application/json' }));
+  images.forEach(file => formData.append('images', file));
+
+  return this.httpClient.put(`${this.url}/product/update/${id}`, formData);
+}
 
 }

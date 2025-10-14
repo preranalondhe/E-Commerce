@@ -1,0 +1,32 @@
+<div class="update-page">
+  <div class="update-container">
+    <button class="close-btn" (click)="router.navigate(['/product'])">&times;</button>
+
+    <h2>Update Product</h2>
+
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <label>Product Name:</label>
+      <input formControlName="name" />
+
+      <label>Description:</label>
+      <textarea formControlName="description"></textarea>
+
+      <label>Price (₹):</label>
+      <input type="number" formControlName="price" />
+
+      <label>Quantity:</label>
+      <input type="number" formControlName="quantity" />
+
+      <label>Color:</label>
+      <input formControlName="colour" />
+
+      <label>Brand:</label>
+      <input formControlName="brand" />
+
+      <label>Upload New Images:</label>
+      <input type="file" (change)="onFileChange($event)" multiple />
+
+      <button type="submit">Update Product</button>
+    </form>
+  </div>
+</div>

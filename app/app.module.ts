@@ -26,6 +26,7 @@ import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.compone
 import { CartComponent } from './page/cart/cart.component';
 import { AuthInterceptor } from 'src/app/service/AuthInterceptor';
 import { CategoryProductsComponent } from 'src/app/category-products/category-products.component';
+import { UpdateProductComponent } from './page/product/updateproduct/updateproduct.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { CategoryProductsComponent } from 'src/app/category-products/category-pr
     RegisterComponent,
     LoginComponent,
     ForgetpasswordComponent,
-    CartComponent
+    CartComponent,
+    UpdateProductComponent
   ],
   imports: [
     BrowserModule,
