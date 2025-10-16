@@ -33,7 +33,7 @@
         <td>{{ product.sizes.join(', ') }}</td>
     <td>{{ product.category?.name }}</td>
         <td>
-          <button class="btn update" [routerLink]="['/updateproduct', product.id]">Update</button>
+<button class="btn update" [routerLink]="['updateproduct', product.id]">Edit</button>
           <button class="btn delete">Delete</button>
         </td>
       </tr>

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+// Layouts
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 import { BlankLayoutComponent } from './layout/blank-layout/blank-layout.component';
 
@@ -9,23 +11,23 @@ import { CartComponent } from './page/cart/cart.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
-import { CategoryProductsComponent } from 'src/app/category-products/category-products.component';
+
 // Admin Pages
 import { DashboardComponent } from './page/dashboard/dashboard.component';
 import { CategoryComponent } from './page/category/category.component';
 import { AddCategoryComponent } from './page/category/add-category/add-category.component';
 import { ProductComponent } from './page/product/product.component';
 import { AddProductComponent } from './page/product/add-product/add-product.component';
+import { UpdateProductComponent } from './page/product/updateproduct/updateproduct.component';
 import { StockComponent } from './page/stock/stock.component';
 import { AddStockComponent } from './page/stock/add-stock/add-stock.component';
 import { DeliveryPersonComponent } from './page/delivery-person/delivery-person.component';
 import { UserComponent } from './page/user/user.component';
 import { OrderComponent } from './page/order/order.component';
-import { UpdateProductComponent } from './page/product/updateproduct/updateproduct.component';
+import { CategoryProductsComponent } from 'src/app/category-products/category-products.component';
 
 const routes: Routes = [
-
-  // Public / User routes
+  // 🌐 Public/User routes
   {
     path: '',
     component: BlankLayoutComponent,
@@ -36,23 +38,23 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'forgetpassword', component: ForgetpasswordComponent },
       { path: 'cart', component: CartComponent },
-
-      // ✅ User-facing category page
-      { path: 'category/:id', component: CategoryProductsComponent }
+      { path: 'category/:id', component: CategoryProductsComponent }, // Dynamic category route
     ]
   },
 
-  // Admin routes
+  // 🛠 Admin routes
   {
     path: '',
     component: MainLayoutComponent,
     children: [
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'category', component: CategoryComponent }, // admin category list
+      { path: 'category', component: CategoryComponent },
       { path: 'addcategory', component: AddCategoryComponent },
       { path: 'product', component: ProductComponent },
-      {path: 'updateproduct', component:UpdateProductComponent},
+               { path: 'updateproduct/:id', component: UpdateProductComponent },
+
       { path: 'addproduct', component: AddProductComponent },
+      { path: 'updateproduct/:id', component: UpdateProductComponent },
       { path: 'stock', component: StockComponent },
       { path: 'addstock', component: AddStockComponent },
       { path: 'delivery', component: DeliveryPersonComponent },
@@ -61,12 +63,12 @@ const routes: Routes = [
     ]
   },
 
-  // Catch-all redirect
+  // 🚫 Wildcard route for any invalid paths
   { path: '**', redirectTo: 'landingpage' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
